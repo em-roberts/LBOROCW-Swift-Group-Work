@@ -7,5 +7,4 @@
 
 import Foundation
 
-print("Hello, World!")
-
+// new xcode project for us all to work from as to control versions and make it fully integrated with GitHub 
