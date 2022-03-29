@@ -1,29 +1,48 @@
 //
 //  main.swift
-//  Chapter 3 Code
+//  Chapter 4
 //
-//  Created by (s) Kelsey Roe on 20/03/2022.
+//  Created by (s) Kelsey Roe on 25/03/2022.
 //
+
+// mm is indexCount
 
 import Foundation
 
+public struct Grid {
+    var electricField: [Double] = []
+    var magneticField: [Double] = []
+    var size = 0
+    var time = 0
+    var maxTime = 0
+    var courantNumber = 0.0
+    
+}
 
-var SIZE = 200
-var LOSS = 0.02
-var LOSS_LAYER = 180
-
-var electricField = [Double] (repeating: 0.0, count: SIZE)
-var magneticField = [Double] (repeating: 0.0, count: SIZE - 1)
-var relativePermittivity = [Double] (repeating: 0.0, count: SIZE)
-var ceze = [Double] (repeating: 0.0, count: SIZE)
-var cezh = [Double] (repeating: 0.0, count: SIZE)
-var chyh = [Double] (repeating: 0.0, count: SIZE - 1)
-var chye = [Double] (repeating: 0.0, count: SIZE - 1)
+var LOSS = 0.0
+var LOSS_LAYER = 0
 
 let impedenceOfFreeSpace = 377.0
 let maxTime = 250
 
-for indexCount in 0 ..< SIZE {
+public var currentElectromagneticField = Grid()
+
+print("Enter the size of the array")
+currentElectromagneticField.size = Int(readLine() ?? "0") ?? 0
+// look at if put 0, double, letter (error handling) 
+
+AllocationIn1D(maxTime: 50, courantNumber: 1.0, time: 5)
+
+var electricField = [Double] (repeating: 0.0, count: currentElectromagneticField.size)
+var magneticField = [Double] (repeating: 0.0, count: currentElectromagneticField.size - 1)
+var relativePermittivity = [Double] (repeating: 0.0, count: currentElectromagneticField.size)
+var ceze = [Double] (repeating: 0.0, count: currentElectromagneticField.size)
+var cezh = [Double] (repeating: 0.0, count: currentElectromagneticField.size)
+var chyh = [Double] (repeating: 0.0, count: currentElectromagneticField.size - 1)
+var chye = [Double] (repeating: 0.0, count: currentElectromagneticField.size - 1)
+
+
+for indexCount in 0 ..< currentElectromagneticField.size {
     if (indexCount < 100) { // free space //
         ceze[indexCount] = 1.0
         cezh[indexCount] = impedenceOfFreeSpace
@@ -38,7 +57,7 @@ for indexCount in 0 ..< SIZE {
     }
 }
 
-for indexCount in 0 ..< SIZE - 1 {
+for indexCount in 0 ..< currentElectromagneticField.size - 1 {
     if (indexCount < LOSS_LAYER) {
         chyh[indexCount] = 1.0
         chye[indexCount] = 1.0 / impedenceOfFreeSpace
@@ -51,7 +70,7 @@ for indexCount in 0 ..< SIZE - 1 {
 
 for timeStep in 0 ..< maxTime {
    
-    for indexCount in 0 ..< SIZE - 1 {
+    for indexCount in 0 ..< currentElectromagneticField.size - 1 {
         magneticField[indexCount] = chyh[indexCount] * magneticField[indexCount] + chye[indexCount] * (electricField[indexCount + 1] - electricField[indexCount])
     }
     
@@ -59,7 +78,7 @@ for timeStep in 0 ..< maxTime {
     
     electricField[0] = electricField[1]
     
-    for indexCount in 1 ..< SIZE - 1 {
+    for indexCount in 1 ..< currentElectromagneticField.size - 1 {
         electricField[indexCount] = ceze[indexCount] * electricField[indexCount] + cezh[indexCount] * (magneticField[indexCount] - magneticField[indexCount - 1])
     }
     
@@ -69,6 +88,29 @@ for timeStep in 0 ..< maxTime {
     
 }
 
-// need Gnuplot to work out how to get snapshots
+//Chapter 4 begins
+
+// Learning how to do inputs
+/*
+var ez = [Double] (repeating: 0.0, count: SIZE)
+
+print("Enter the size of the array")
+var numberOfElementsInArray = Int(readLine() ?? "12") ?? 12
+
+ez = [Double] (repeating: 0.0, count: (numberOfElementsInArray + 1))
+
+for indexCount in 0 ..< numberOfElementsInArray + 1 {
+    ez[indexCount] = 3.0 * Double(indexCount)
+    
+    print(ez[indexCount])
+}
+*/
+ 
+// Fragment 4.2 not necessary
+// Pointers break the code, avoid
+//macros
+
+
+
 
 
