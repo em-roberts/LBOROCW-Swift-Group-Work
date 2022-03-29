@@ -1,12 +1,10 @@
 //
 //  main.swift
-//  Chapter 4
 //
-//  Created by (s) Kelsey Roe on 25/03/2022.
+//  Created by (s) Emily Roberts on 08/02/2022.
 //
 
 // mm is indexCount
-
 import Foundation
 
 public struct Grid {
@@ -19,6 +17,16 @@ public struct Grid {
     
 }
 
+func AllocationIn1D(maxTime: Int, courantNumber: Double, time: Int) {
+    currentElectromagneticField.electricField = [Double] (repeating: 0.0, count: currentElectromagneticField.size)
+    
+    currentElectromagneticField.magneticField = [Double] (repeating: 0.0, count: currentElectromagneticField.size)
+    
+    currentElectromagneticField.time = time
+    currentElectromagneticField.maxTime = maxTime
+    currentElectromagneticField.courantNumber = courantNumber
+}
+
 var LOSS = 0.0
 var LOSS_LAYER = 0
 
@@ -29,7 +37,7 @@ public var currentElectromagneticField = Grid()
 
 print("Enter the size of the array")
 currentElectromagneticField.size = Int(readLine() ?? "0") ?? 0
-// look at if put 0, double, letter (error handling) 
+// look at if put 0, double, letter (error handling)
 
 AllocationIn1D(maxTime: 50, courantNumber: 1.0, time: 5)
 
@@ -68,37 +76,59 @@ for indexCount in 0 ..< currentElectromagneticField.size - 1 {
     }
 }
 
-for timeStep in 0 ..< maxTime {
-   
-    for indexCount in 0 ..< currentElectromagneticField.size - 1 {
-        magneticField[indexCount] = chyh[indexCount] * magneticField[indexCount] + chye[indexCount] * (electricField[indexCount + 1] - electricField[indexCount])
+let date = Date() // to ID run by execution time and avoid overwriting previous files
+let pathToFile = "/Users/phecr/OneDrive - Loughborough University/computational_data/"
+//let writeFilename = pathToFile + "test_" + date.description + ".dat"
+let writeFilename = pathToFile + "test_"  + ".dat"
+
+let fileHasBeenWritten = FileManager.default.createFile(atPath: writeFilename, contents: nil, attributes: nil)
+
+if fileHasBeenWritten {
+    // Do not worry about do, try and catch now - we will cover this later (it is about dealing with runtime errors).
+    do {
+        
+        var outputText = String()
+        
+        for timeStep in 0 ..< maxTime {
+            for indexCount in 0 ..< currentElectromagneticField.size - 1 {
+                magneticField[indexCount] = chyh[indexCount] * magneticField[indexCount] + chye[indexCount] * (electricField[indexCount + 1] - electricField[indexCount])
+            }
+    
+            magneticField[49] = magneticField[49] - exp(-(Double(timeStep) - 30.0) * (Double(timeStep) - 30.0) / 100.0) / impedenceOfFreeSpace
+    
+            electricField[0] = electricField[1]
+    
+            for indexCount in 1 ..< currentElectromagneticField.size - 1 {
+                electricField[indexCount] = ceze[indexCount] * electricField[indexCount] + cezh[indexCount] * (magneticField[indexCount] - magneticField[indexCount - 1])
+            }
+    
+            electricField[50] = electricField[50] + exp(-(Double(timeStep) + 0.5 - (-0.5) - 30.0) * (Double(timeStep) + 0.5 - (-0.5) - 30.0) / 100.0)
+    
+            for i in 0 ..< electricField.count {
+                outputText.append(timeStep.description)
+                outputText.append("\t")
+                outputText.append(i.description)
+                outputText.append("\t")
+                outputText.append(electricField[i].description)
+                outputText.append("\n")
+            }
+            outputText.append("\n")
+            print(electricField[50])
+        }
+        try outputText.write(toFile: writeFilename, atomically: false, encoding: .utf8)
+    } catch {
+        // code for error handling here - which we have not studied yet
     }
-    
-    magneticField[49] = magneticField[49] - exp(-(Double(timeStep) - 30.0) * (Double(timeStep) - 30.0) / 100.0) / impedenceOfFreeSpace
-    
-    electricField[0] = electricField[1]
-    
-    for indexCount in 1 ..< currentElectromagneticField.size - 1 {
-        electricField[indexCount] = ceze[indexCount] * electricField[indexCount] + cezh[indexCount] * (magneticField[indexCount] - magneticField[indexCount - 1])
-    }
-    
-    electricField[50] = electricField[50] + exp(-(Double(timeStep) + 0.5 - (-0.5) - 30.0) * (Double(timeStep) + 0.5 - (-0.5) - 30.0) / 100.0)
-    
-    print (electricField[50])
     
 }
 
 //Chapter 4 begins
-
 // Learning how to do inputs
 /*
 var ez = [Double] (repeating: 0.0, count: SIZE)
-
 print("Enter the size of the array")
 var numberOfElementsInArray = Int(readLine() ?? "12") ?? 12
-
 ez = [Double] (repeating: 0.0, count: (numberOfElementsInArray + 1))
-
 for indexCount in 0 ..< numberOfElementsInArray + 1 {
     ez[indexCount] = 3.0 * Double(indexCount)
     
@@ -109,8 +139,5 @@ for indexCount in 0 ..< numberOfElementsInArray + 1 {
 // Fragment 4.2 not necessary
 // Pointers break the code, avoid
 //macros
-
-
-
 
 
