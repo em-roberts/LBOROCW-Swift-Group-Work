@@ -17,7 +17,7 @@ public struct Grid {
 }
 
 public var ez = currentElectromagneticField.electricField
-public var hz = currentElectromagneticField.magneticField
+public var hy = currentElectromagneticField.magneticField
 public var size = currentElectromagneticField.size
 public var time = currentElectromagneticField.time
 public var courantNumber = currentElectromagneticField.courantNumber
