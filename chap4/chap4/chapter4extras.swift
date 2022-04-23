@@ -17,11 +17,17 @@ func AllocationIn1D(maxTime: Int, courantNumber: Double, time: Int) {
     currentElectromagneticField.courantNumber = courantNumber
 }
 
-func harmonicInit1(the_amp: Double, the_phase: Double) -> Void{
-    amplitude = the_amp
-    phase = the_phase
+var amp = 0.0
+var phase = 0.0
+
+func harmonicInit2() { 
+    print("Enter the Amplitude")
+    amp = Double(readLine() ?? "0") ?? 0
+    print("Enter the phase in degrees: ")
+    phase = Double(readLine() ?? "0") ?? 0
+    phase *= Double.pi / 180 
 }
 
-func harmonic1(x: Double) -> Double {
-    return amplitude * cos(x + phase)
+func harmonic2(x: Double) -> Double {
+    return amp * cos(x + phase)
 }

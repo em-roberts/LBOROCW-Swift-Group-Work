@@ -34,12 +34,8 @@ currentElectromagneticField.size = Int(readLine() ?? "0") ?? 0
 // look at if put 0, double, letter (error handling)
 AllocationIn1D(maxTime: 50, courantNumber: 1.0, time: 5)
 
-print("Enter the amplitude: ")
-amplitude = Double(readLine() ?? "0") ?? 0
-
-print("Enter the phase [in degrees]: ")
-phase = Double(readLine() ?? "0") ?? 0
-phase = phase * (Double.pi) / 180.0
+harmonicInit2()
+harmonic2(x: x_1)
 
 var electricField = [Double] (repeating: 0.0, count: currentElectromagneticField.size)
 var magneticField = [Double] (repeating: 0.0, count: currentElectromagneticField.size - 1)
@@ -48,9 +44,6 @@ var ceze = [Double] (repeating: 0.0, count: currentElectromagneticField.size)
 var cezh = [Double] (repeating: 0.0, count: currentElectromagneticField.size)
 var chyh = [Double] (repeating: 0.0, count: currentElectromagneticField.size - 1)
 var chye = [Double] (repeating: 0.0, count: currentElectromagneticField.size - 1)
-
-
-harmonicInit1(the_amp: amplitude, the_phase: phase)
 
 
 for indexCount in 0 ..< currentElectromagneticField.size {
@@ -109,7 +102,7 @@ if fileHasBeenWritten {
             
             for indexCount in 0 ..< num_points {
                 x_1 = 2.0 * (Double.pi) * Double(indexCount) / Double(num_points - 1)
-                print(harmonic1(x: x_1))
+                print(harmonic2(x: x_1))
             }
     
             for i in 0 ..< electricField.count {
@@ -130,21 +123,5 @@ if fileHasBeenWritten {
     
 }
 
-//Chapter 4 begins
-// Learning how to do inputs
-/*
-var ez = [Double] (repeating: 0.0, count: SIZE)
-print("Enter the size of the array")
-var numberOfElementsInArray = Int(readLine() ?? "12") ?? 12
-ez = [Double] (repeating: 0.0, count: (numberOfElementsInArray + 1))
-for indexCount in 0 ..< numberOfElementsInArray + 1 {
-    ez[indexCount] = 3.0 * Double(indexCount)
-    
-    print(ez[indexCount])
-}
-*/
- 
-// Fragment 4.2 not necessary
-// Pointers break the code, avoid
-//macros
+
 
