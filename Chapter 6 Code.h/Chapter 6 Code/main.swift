@@ -4,7 +4,7 @@
 
 
 //Progress -> Completed Chapter 6
-//Snapshot Works? (Need to checl .dat file but passes error check)
+//Snapshot Works? (Need to check .dat file but passes error check)
 
 
 import Foundation
