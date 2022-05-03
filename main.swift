@@ -5,7 +5,7 @@
 //
 
 // mm is indexCount
-import Foundation
+import Foundation 
 
 public struct Grid {
     var electricField: [Double] = []
