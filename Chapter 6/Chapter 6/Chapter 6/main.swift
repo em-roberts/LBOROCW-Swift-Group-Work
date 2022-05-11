@@ -8,7 +8,7 @@
 import Foundation
 
 var epsr = 9.0
-func gridInit() -> {
+func gridInit() -> Void {
     var imp0 = 377.0
     var mm = 0
     var SizeX = 200

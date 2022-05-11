@@ -18,16 +18,16 @@ func AllocationIn1D(maxTime: Int, courantNumber: Double, time: Int) {
 }
 
 var amp = 0.0
-var phase = 0.0
+var phase_1 = 0.0
 
 func harmonicInit2() { 
     print("Enter the Amplitude")
     amp = Double(readLine() ?? "0") ?? 0
     print("Enter the phase in degrees: ")
-    phase = Double(readLine() ?? "0") ?? 0
-    phase *= Double.pi / 180 
+    phase_1 = Double(readLine() ?? "0") ?? 0
+    phase_1 *= Double.pi / 180
 }
 
 func harmonic2(x: Double) -> Double {
-    return amp * cos(x + phase)
+    return amp * cos(x + phase_1)
 }

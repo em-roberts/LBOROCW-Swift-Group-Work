@@ -21,7 +21,7 @@ var LOSS = 0.0
 var LOSS_LAYER = 0
 var amplitude: Double = 0.0
 var phase: Double = 0.0
-var x_1: Double
+var x_1: Double = 0.0
 
 let impedenceOfFreeSpace = 377.0
 let timeLimit = 250
