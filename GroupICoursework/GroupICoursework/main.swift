@@ -7,35 +7,17 @@
 // mm is indexCount
 import Foundation
 
-public struct Grid {
-    var electricField: [Double] = []
-    var magneticField: [Double] = []
-    var size = 0
-    var time = 0
-    var maxTime = 0
-    var courantNumber = 0.0
-    
-}
-
-func AllocationIn1D(maxTime: Int, courantNumber: Double, time: Int) {
-    currentElectromagneticField.electricField = [Double] (repeating: 0.0, count: currentElectromagneticField.size)
-    
-    currentElectromagneticField.magneticField = [Double] (repeating: 0.0, count: currentElectromagneticField.size)
-    
-    currentElectromagneticField.time = time
-    currentElectromagneticField.maxTime = maxTime
-    currentElectromagneticField.courantNumber = courantNumber
-}
-
 var LOSS = 0.02
 var LOSS_LAYER = 180
+var maxTime = 250
+var size = 200
+var courantNumber = 1.0
 
 let impedenceOfFreeSpace = 377.0
-let maxTime = 250
 
 public var currentElectromagneticField = Grid()
 
-print("Enter the size of the array")
+print("Enter the size of the array - must be an integer")
 currentElectromagneticField.size = Int(readLine() ?? "0") ?? 0
 // look at if put 0, double, letter (error handling)
 
@@ -44,6 +26,8 @@ AllocationIn1D(maxTime: 50, courantNumber: 1.0, time: 5)
 var electricField = [Double] (repeating: 0.0, count: currentElectromagneticField.size)
 var magneticField = [Double] (repeating: 0.0, count: currentElectromagneticField.size - 1)
 var relativePermittivity = [Double] (repeating: 0.0, count: currentElectromagneticField.size)
+
+// array names are from the document, where the coefficient (c) appears in the update equations of (ez) or (hy) and multiplied by either the electric (e) or the magnetic (h) field 
 var ceze = [Double] (repeating: 0.0, count: currentElectromagneticField.size)
 var cezh = [Double] (repeating: 0.0, count: currentElectromagneticField.size)
 var chyh = [Double] (repeating: 0.0, count: currentElectromagneticField.size - 1)
@@ -76,8 +60,10 @@ for indexCount in 0 ..< currentElectromagneticField.size - 1 {
     }
 }
 
+
+
 let date = Date() // to ID run by execution time and avoid overwriting previous files
-let pathToFile = "/Users/phecr/OneDrive - Loughborough University/computational_data/"
+let pathToFile = "/Users/phkjr/OneDrive - Loughborough University/computational_data/"
 let writeFilename = pathToFile + "test_" + date.description + ".dat"
 
 let fileHasBeenWritten = FileManager.default.createFile(atPath: writeFilename, contents: nil, attributes: nil)
