@@ -7,23 +7,22 @@
 
 import Foundation
 
-private var cdtds: Double = 0.0
-private var delay: Double = 0.0
-private var width: Int = 0
-
-public func ezIncInit (_ g: Grid) -> Void {
-    cdtds = courantNumber
-    print("Enter the delay")
-    delay = Double(readLine() ?? "0") ?? 0
-    print ("Enter the width")
-    width = Int(readLine() ?? "0") ?? 0
+private var ppw = 0.0
+var cdtds = courantNumber
+public func ezIncInit(_ g: Grid) -> Void {
+     print("Enter points per wavelength:")
+     ppw = Double(readLine() ?? "0") ?? 0
     return
-}
 
-public func ezInc (_ time: Double, location: Double) -> Double {
-    if width <= 0 {
-        print("ezInc: Must call ezIncInit before ezInc\n")
+ }
+public func ezInc(_ time: Double, location: Double) -> Double {
+    print(ppw)
+    if ppw <= 0.0 {
+         print(
+               "ezInc: must call ezIncInit before ezInc.\n",
+                 "       Point per wavelength must be positive. \n")
         exit(-1)
-    }
-    return exp(-pow((time - delay - location / cdtds) / Double(width), 2))
-}
+     }
+    return sin(2.0 * Double.pi / ppw * (cdtds * time - location))
+ }
+
