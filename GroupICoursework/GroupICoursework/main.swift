@@ -7,43 +7,36 @@
 // mm is indexCount
 import Foundation
 
-public struct Grid {
-    var electricField: [Double] = []
-    var magneticField: [Double] = []
-    var size = 0
-    var time = 0
-    var maxTime = 0
-    var courantNumber = 0.0
-    
-}
-
-func AllocationIn1D(maxTime: Int, courantNumber: Double, time: Int) {
-    currentElectromagneticField.electricField = [Double] (repeating: 0.0, count: currentElectromagneticField.size)
-    
-    currentElectromagneticField.magneticField = [Double] (repeating: 0.0, count: currentElectromagneticField.size)
-    
-    currentElectromagneticField.time = time
-    currentElectromagneticField.maxTime = maxTime
-    currentElectromagneticField.courantNumber = courantNumber
-}
-
 var LOSS = 0.02
 var LOSS_LAYER = 180
+var maxTime = 250
+var size = 200
+var courantNumber = 1.0
+var x = 0.0
 
+let num_points = 100
 let impedenceOfFreeSpace = 377.0
-let maxTime = 250
 
 public var currentElectromagneticField = Grid()
 
-print("Enter the size of the array")
+print("Enter the size of the array - must be an integer")
 currentElectromagneticField.size = Int(readLine() ?? "0") ?? 0
 // look at if put 0, double, letter (error handling)
 
-AllocationIn1D(maxTime: 50, courantNumber: 1.0, time: 5)
+AllocationIn1D(maxTime: 50, courantNumber: 1.0, timeStep: 5)
+
+print("Enter the amplitude - must be an integer")
+amp = Double(readLine() ?? "0") ?? 0
+
+print("Enter the phase (in degrees) - must be an integer")
+phase = Double(readLine() ?? "0") ?? 0
+phase = phase * Double.pi / 180.0
 
 var electricField = [Double] (repeating: 0.0, count: currentElectromagneticField.size)
 var magneticField = [Double] (repeating: 0.0, count: currentElectromagneticField.size - 1)
 var relativePermittivity = [Double] (repeating: 0.0, count: currentElectromagneticField.size)
+
+// array names are from the document, where the coefficient (c) appears in the update equations of (ez) or (hy) and multiplied by either the electric (e) or the magnetic (h) field 
 var ceze = [Double] (repeating: 0.0, count: currentElectromagneticField.size)
 var cezh = [Double] (repeating: 0.0, count: currentElectromagneticField.size)
 var chyh = [Double] (repeating: 0.0, count: currentElectromagneticField.size - 1)
@@ -77,7 +70,7 @@ for indexCount in 0 ..< currentElectromagneticField.size - 1 {
 }
 
 let date = Date() // to ID run by execution time and avoid overwriting previous files
-let pathToFile = "/Users/phecr/OneDrive - Loughborough University/computational_data/"
+let pathToFile = "/Users/phkjr/OneDrive - Loughborough University/computational_data/"
 let writeFilename = pathToFile + "test_" + date.description + ".dat"
 
 let fileHasBeenWritten = FileManager.default.createFile(atPath: writeFilename, contents: nil, attributes: nil)
@@ -102,6 +95,11 @@ if fileHasBeenWritten {
             }
     
             electricField[50] = electricField[50] + exp(-(Double(timeStep) + 0.5 - (-0.5) - 30.0) * (Double(timeStep) + 0.5 - (-0.5) - 30.0) / 100.0)
+            
+            for indexCount in 0 ..< num_points {
+                x = 2.0 * Double.pi * Double(indexCount) / Double(num_points - 1)
+                print(harmonic1(x: x))
+            }
     
             for i in 0 ..< electricField.count {
                 outputText.append(timeStep.description)
@@ -120,24 +118,6 @@ if fileHasBeenWritten {
     }
     
 }
-
-//Chapter 4 begins
-// Learning how to do inputs
-/*
-var ez = [Double] (repeating: 0.0, count: SIZE)
-print("Enter the size of the array")
-var numberOfElementsInArray = Int(readLine() ?? "12") ?? 12
-ez = [Double] (repeating: 0.0, count: (numberOfElementsInArray + 1))
-for indexCount in 0 ..< numberOfElementsInArray + 1 {
-    ez[indexCount] = 3.0 * Double(indexCount)
-    
-    print(ez[indexCount])
-}
-*/
- 
-// Fragment 4.2 not necessary
-// Pointers break the code, avoid
-//macros
 
 
 
