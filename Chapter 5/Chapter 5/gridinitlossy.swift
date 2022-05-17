@@ -9,7 +9,7 @@
 //#define LOSS_LAYER 100
 //#define EPSR 4.0
 
-func gridInit3(Grid, g){
+func gridInit3(Grid){
     var imp0 = 377.0
     var mm = 0
     let SizeX = 200

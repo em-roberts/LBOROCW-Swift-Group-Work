@@ -7,15 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6B9A92752833A3DF00349419 /* Graph fig 5.4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9A92742833A3DF00349419 /* Graph fig 5.4.swift */; };
-		6B9A92782833A40000349419 /* Graph fig 5.5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9A92772833A40000349419 /* Graph fig 5.5.swift */; };
-		6BE6FA8728317817003F19CE /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE6FA8628317817003F19CE /* main.swift */; };
-		6BE6FA902831795E003F19CE /* gridinitlossy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE6FA8F2831795E003F19CE /* gridinitlossy.swift */; };
-		6BE6FA9428317D4E003F19CE /* ezincharm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE6FA9328317D4E003F19CE /* ezincharm.swift */; };
+		CDA8DE852833AE1600E34B72 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA8DE842833AE1600E34B72 /* main.swift */; };
+		CDA8DE8D2833AE4200E34B72 /* fdtd-macro-tmz h.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA8DE8C2833AE4200E34B72 /* fdtd-macro-tmz h.swift */; };
+		CDA8DE902833AF8800E34B72 /* fdtd-alloc h.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA8DE8F2833AF8800E34B72 /* fdtd-alloc h.swift */; };
+		CDA8DE932833AFCE00E34B72 /* fdtd-grid h.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA8DE922833AFCE00E34B72 /* fdtd-grid h.swift */; };
+		CDA8DE962833B03A00E34B72 /* grid-tmz c.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA8DE952833B03A00E34B72 /* grid-tmz c.swift */; };
+		CDA8DE992833B06E00E34B72 /* updatetmz c.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA8DE982833B06E00E34B72 /* updatetmz c.swift */; };
+		CDA8DE9C2833B08700E34B72 /* ricker c.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA8DE9B2833B08700E34B72 /* ricker c.swift */; };
+		CDA8DE9F2833B0AA00E34B72 /* snapshot c.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA8DE9E2833B0AA00E34B72 /* snapshot c.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		6BE6FA8128317817003F19CE /* CopyFiles */ = {
+		CDA8DE7F2833AE1600E34B72 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
@@ -27,16 +30,19 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		6B9A92742833A3DF00349419 /* Graph fig 5.4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Graph fig 5.4.swift"; sourceTree = "<group>"; };
-		6B9A92772833A40000349419 /* Graph fig 5.5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Graph fig 5.5.swift"; sourceTree = "<group>"; };
-		6BE6FA8328317817003F19CE /* Chapter 5 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Chapter 5"; sourceTree = BUILT_PRODUCTS_DIR; };
-		6BE6FA8628317817003F19CE /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		6BE6FA8F2831795E003F19CE /* gridinitlossy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gridinitlossy.swift; sourceTree = "<group>"; };
-		6BE6FA9328317D4E003F19CE /* ezincharm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ezincharm.swift; sourceTree = "<group>"; };
+		CDA8DE812833AE1600E34B72 /* 2D FDTD Base */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "2D FDTD Base"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CDA8DE842833AE1600E34B72 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		CDA8DE8C2833AE4200E34B72 /* fdtd-macro-tmz h.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "fdtd-macro-tmz h.swift"; sourceTree = "<group>"; };
+		CDA8DE8F2833AF8800E34B72 /* fdtd-alloc h.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "fdtd-alloc h.swift"; sourceTree = "<group>"; };
+		CDA8DE922833AFCE00E34B72 /* fdtd-grid h.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "fdtd-grid h.swift"; sourceTree = "<group>"; };
+		CDA8DE952833B03A00E34B72 /* grid-tmz c.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "grid-tmz c.swift"; sourceTree = "<group>"; };
+		CDA8DE982833B06E00E34B72 /* updatetmz c.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "updatetmz c.swift"; sourceTree = "<group>"; };
+		CDA8DE9B2833B08700E34B72 /* ricker c.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ricker c.swift"; sourceTree = "<group>"; };
+		CDA8DE9E2833B0AA00E34B72 /* snapshot c.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "snapshot c.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		6BE6FA8028317817003F19CE /* Frameworks */ = {
+		CDA8DE7E2833AE1600E34B72 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -46,69 +52,72 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		6BE6FA7A28317817003F19CE = {
+		CDA8DE782833AE1600E34B72 = {
 			isa = PBXGroup;
 			children = (
-				6BE6FA8528317817003F19CE /* Chapter 5 */,
-				6BE6FA8428317817003F19CE /* Products */,
+				CDA8DE832833AE1600E34B72 /* 2D FDTD Base */,
+				CDA8DE822833AE1600E34B72 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		6BE6FA8428317817003F19CE /* Products */ = {
+		CDA8DE822833AE1600E34B72 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				6BE6FA8328317817003F19CE /* Chapter 5 */,
+				CDA8DE812833AE1600E34B72 /* 2D FDTD Base */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		6BE6FA8528317817003F19CE /* Chapter 5 */ = {
+		CDA8DE832833AE1600E34B72 /* 2D FDTD Base */ = {
 			isa = PBXGroup;
 			children = (
-				6BE6FA8628317817003F19CE /* main.swift */,
-				6BE6FA8F2831795E003F19CE /* gridinitlossy.swift */,
-				6BE6FA9328317D4E003F19CE /* ezincharm.swift */,
-				6B9A92742833A3DF00349419 /* Graph fig 5.4.swift */,
-				6B9A92772833A40000349419 /* Graph fig 5.5.swift */,
+				CDA8DE842833AE1600E34B72 /* main.swift */,
+				CDA8DE8F2833AF8800E34B72 /* fdtd-alloc h.swift */,
+				CDA8DE922833AFCE00E34B72 /* fdtd-grid h.swift */,
+				CDA8DE8C2833AE4200E34B72 /* fdtd-macro-tmz h.swift */,
+				CDA8DE952833B03A00E34B72 /* grid-tmz c.swift */,
+				CDA8DE982833B06E00E34B72 /* updatetmz c.swift */,
+				CDA8DE9B2833B08700E34B72 /* ricker c.swift */,
+				CDA8DE9E2833B0AA00E34B72 /* snapshot c.swift */,
 			);
-			path = "Chapter 5";
+			path = "2D FDTD Base";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		6BE6FA8228317817003F19CE /* Chapter 5 */ = {
+		CDA8DE802833AE1600E34B72 /* 2D FDTD Base */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6BE6FA8A28317817003F19CE /* Build configuration list for PBXNativeTarget "Chapter 5" */;
+			buildConfigurationList = CDA8DE882833AE1600E34B72 /* Build configuration list for PBXNativeTarget "2D FDTD Base" */;
 			buildPhases = (
-				6BE6FA7F28317817003F19CE /* Sources */,
-				6BE6FA8028317817003F19CE /* Frameworks */,
-				6BE6FA8128317817003F19CE /* CopyFiles */,
+				CDA8DE7D2833AE1600E34B72 /* Sources */,
+				CDA8DE7E2833AE1600E34B72 /* Frameworks */,
+				CDA8DE7F2833AE1600E34B72 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "Chapter 5";
-			productName = "Chapter 5";
-			productReference = 6BE6FA8328317817003F19CE /* Chapter 5 */;
+			name = "2D FDTD Base";
+			productName = "2D FDTD Base";
+			productReference = CDA8DE812833AE1600E34B72 /* 2D FDTD Base */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		6BE6FA7B28317817003F19CE /* Project object */ = {
+		CDA8DE792833AE1600E34B72 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1240;
 				LastUpgradeCheck = 1240;
 				TargetAttributes = {
-					6BE6FA8228317817003F19CE = {
+					CDA8DE802833AE1600E34B72 = {
 						CreatedOnToolsVersion = 12.4;
 					};
 				};
 			};
-			buildConfigurationList = 6BE6FA7E28317817003F19CE /* Build configuration list for PBXProject "Chapter 5" */;
+			buildConfigurationList = CDA8DE7C2833AE1600E34B72 /* Build configuration list for PBXProject "2D FDTD Base" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -116,33 +125,36 @@
 				en,
 				Base,
 			);
-			mainGroup = 6BE6FA7A28317817003F19CE;
-			productRefGroup = 6BE6FA8428317817003F19CE /* Products */;
+			mainGroup = CDA8DE782833AE1600E34B72;
+			productRefGroup = CDA8DE822833AE1600E34B72 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				6BE6FA8228317817003F19CE /* Chapter 5 */,
+				CDA8DE802833AE1600E34B72 /* 2D FDTD Base */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		6BE6FA7F28317817003F19CE /* Sources */ = {
+		CDA8DE7D2833AE1600E34B72 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6BE6FA902831795E003F19CE /* gridinitlossy.swift in Sources */,
-				6B9A92752833A3DF00349419 /* Graph fig 5.4.swift in Sources */,
-				6B9A92782833A40000349419 /* Graph fig 5.5.swift in Sources */,
-				6BE6FA9428317D4E003F19CE /* ezincharm.swift in Sources */,
-				6BE6FA8728317817003F19CE /* main.swift in Sources */,
+				CDA8DE962833B03A00E34B72 /* grid-tmz c.swift in Sources */,
+				CDA8DE992833B06E00E34B72 /* updatetmz c.swift in Sources */,
+				CDA8DE8D2833AE4200E34B72 /* fdtd-macro-tmz h.swift in Sources */,
+				CDA8DE932833AFCE00E34B72 /* fdtd-grid h.swift in Sources */,
+				CDA8DE902833AF8800E34B72 /* fdtd-alloc h.swift in Sources */,
+				CDA8DE9C2833B08700E34B72 /* ricker c.swift in Sources */,
+				CDA8DE9F2833B0AA00E34B72 /* snapshot c.swift in Sources */,
+				CDA8DE852833AE1600E34B72 /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		6BE6FA8828317817003F19CE /* Debug */ = {
+		CDA8DE862833AE1600E34B72 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -203,7 +215,7 @@
 			};
 			name = Debug;
 		};
-		6BE6FA8928317817003F19CE /* Release */ = {
+		CDA8DE872833AE1600E34B72 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -257,7 +269,7 @@
 			};
 			name = Release;
 		};
-		6BE6FA8B28317817003F19CE /* Debug */ = {
+		CDA8DE892833AE1600E34B72 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -266,7 +278,7 @@
 			};
 			name = Debug;
 		};
-		6BE6FA8C28317817003F19CE /* Release */ = {
+		CDA8DE8A2833AE1600E34B72 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -278,25 +290,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		6BE6FA7E28317817003F19CE /* Build configuration list for PBXProject "Chapter 5" */ = {
+		CDA8DE7C2833AE1600E34B72 /* Build configuration list for PBXProject "2D FDTD Base" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				6BE6FA8828317817003F19CE /* Debug */,
-				6BE6FA8928317817003F19CE /* Release */,
+				CDA8DE862833AE1600E34B72 /* Debug */,
+				CDA8DE872833AE1600E34B72 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6BE6FA8A28317817003F19CE /* Build configuration list for PBXNativeTarget "Chapter 5" */ = {
+		CDA8DE882833AE1600E34B72 /* Build configuration list for PBXNativeTarget "2D FDTD Base" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				6BE6FA8B28317817003F19CE /* Debug */,
-				6BE6FA8C28317817003F19CE /* Release */,
+				CDA8DE892833AE1600E34B72 /* Debug */,
+				CDA8DE8A2833AE1600E34B72 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 6BE6FA7B28317817003F19CE /* Project object */;
+	rootObject = CDA8DE792833AE1600E34B72 /* Project object */;
 }
