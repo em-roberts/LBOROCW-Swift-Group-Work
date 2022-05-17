@@ -7,7 +7,7 @@
 
 import Foundation
 
-func AllocationIn1D(maxTime: Int, courantNumber: Double, time: Int) {
+public func AllocationIn1D(maxTime: Int, courantNumber: Double, time: Int) {
     currentElectromagneticField.electricField = [Double] (repeating: 0.0, count: currentElectromagneticField.size)
     
     currentElectromagneticField.magneticField = [Double] (repeating: 0.0, count: currentElectromagneticField.size)
@@ -17,10 +17,10 @@ func AllocationIn1D(maxTime: Int, courantNumber: Double, time: Int) {
     currentElectromagneticField.courantNumber = courantNumber
 }
 
-var amp = 0.0
-var phase_1 = 0.0
+public var amp = 0.0
+public var phase_1 = 0.0
 
-func harmonicInit2() { 
+public func harmonicInit2() {
     print("Enter the Amplitude")
     amp = Double(readLine() ?? "0") ?? 0
     print("Enter the phase in degrees: ")
@@ -28,6 +28,6 @@ func harmonicInit2() {
     phase_1 *= Double.pi / 180
 }
 
-func harmonic2(x: Double) -> Double {
+public func harmonic2(x: Double) -> Double {
     return amp * cos(x + phase_1)
 }
