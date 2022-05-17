@@ -1,0 +1,67 @@
+//
+//  snapshot c.swift
+//  2D FDTD Base
+//
+//  Created by (s) Jack Murdoch on 17/05/2022.
+//
+
+import Foundation
+
+private var writeFileName: String = ""
+private var outputText: String = ""
+
+public func snapshotInit () -> Void {
+    let date = Date()
+    let filePath = NSHomeDirectory()
+    //Currently uploads to a .txt file
+    writeFileName = filePath + "/snapshot " + date.description + ".txt"
+    
+    if (FileManager.default.createFile(atPath: writeFileName, contents: nil, attributes: nil)) {
+        print("File successfully created")
+    } else {
+        print("An error occured when creating the file")
+    }
+    return
+}
+
+public func snapshotWrite (_ g: Grid) -> Void {
+    
+    if writeFileName == "" {
+        print("snapshotAppend: snapshotInit must be called before snapshotWrite")
+        exit(-1)
+    }
+
+    for i in 1 ... SizeX() {
+        for j in 1 ... SizeY() {
+            outputText.append(g.time.description)
+            outputText.append("\t")
+            outputText.append(i.description)
+            outputText.append("\t")
+            outputText.append(j.description)
+            outputText.append("\t")
+            outputText.append(g.ez[i * SizeY() + j].description)
+            outputText.append("\n")
+        }
+    }
+    outputText.append("\n")
+
+    return
+}
+
+public func snapshotUpload() -> Void {
+    
+    if outputText == "" {
+        print("snapshotWrite: snapshotWrite must be called before snapshotUpload")
+        exit(-1)
+    }
+    
+    do {
+        
+        try outputText.write(toFile: writeFileName, atomically: false, encoding: .utf8)
+        
+    } catch {
+        
+    }
+    print("Data has been uploaded to file")
+    return
+}
