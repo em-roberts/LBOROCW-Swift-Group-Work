@@ -25,12 +25,14 @@ currentElectromagneticField.size = Int(readLine() ?? "0") ?? 0
 
 AllocationIn1D(maxTime: 50, courantNumber: 1.0, timeStep: 5)
 
+/*
 print("Enter the amplitude - must be an integer")
 amp = Double(readLine() ?? "0") ?? 0
 
 print("Enter the phase (in degrees) - must be an integer")
 phase = Double(readLine() ?? "0") ?? 0
 phase = phase * Double.pi / 180.0
+*/
 
 var electricField = [Double] (repeating: 0.0, count: currentElectromagneticField.size)
 var magneticField = [Double] (repeating: 0.0, count: currentElectromagneticField.size - 1)
@@ -93,14 +95,14 @@ if fileHasBeenWritten {
             for indexCount in 1 ..< currentElectromagneticField.size - 1 {
                 electricField[indexCount] = ceze[indexCount] * electricField[indexCount] + cezh[indexCount] * (magneticField[indexCount] - magneticField[indexCount - 1])
             }
+            
+         /*   for indexCount in 0 ..< num_points {
+                x = 2.0 * Double.pi * Double(indexCount) / Double(num_points - 1)
+                print(harmonic1(x: x))
+            } */
     
             electricField[50] = electricField[50] + exp(-(Double(timeStep) + 0.5 - (-0.5) - 30.0) * (Double(timeStep) + 0.5 - (-0.5) - 30.0) / 100.0)
             
-            for indexCount in 0 ..< num_points {
-                x = 2.0 * Double.pi * Double(indexCount) / Double(num_points - 1)
-                print(harmonic1(x: x))
-            }
-    
             for i in 0 ..< electricField.count {
                 outputText.append(timeStep.description)
                 outputText.append("\t")
@@ -119,5 +121,6 @@ if fileHasBeenWritten {
     
 }
 
-
-
+//definitely done program 4.6
+// for now commented out amplitude and phase code - asking Mark if we have done Gnuplot wrong
+// for now ignoring harmonic 2
