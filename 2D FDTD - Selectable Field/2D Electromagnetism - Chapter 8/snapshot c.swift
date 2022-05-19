@@ -14,7 +14,7 @@ public func snapshotInit () -> Void {
     let date = Date()
     let filePath = NSHomeDirectory()
     //Currently uploads to a .txt file
-    writeFileName = filePath + "/snapshot " + date.description + ".txt"
+    writeFileName = filePath + "/snapshot " + date.description + ".dat"
     
     if (FileManager.default.createFile(atPath: writeFileName, contents: nil, attributes: nil)) {
         print("\n","File successfully created")
