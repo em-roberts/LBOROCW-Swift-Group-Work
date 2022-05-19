@@ -7,7 +7,7 @@
 
 import Foundation
 
-private var initDone: Int = 0
+/* private var initDone: Int = 0
 private var ezOldLeft1: [Double] = [], ezOldLeft2: [Double] = [],
             ezOldRight1: [Double] = [], ezOldRight2: [Double] = []
 private var abcCoefLeft: [Double] = [], abcCoefRight: [Double] = []
@@ -64,3 +64,4 @@ public func abc (_ g:Grid) -> Void {
     }
     return
 }
+*/

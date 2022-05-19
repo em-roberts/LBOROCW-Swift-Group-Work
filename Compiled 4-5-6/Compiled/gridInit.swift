@@ -9,7 +9,7 @@ import Foundation
 
 public let LOSS = 0.0253146
 public let lossLayer = 100
-public let EPSR = 9.0
+public let EPSR = 4.0    //chapter 6: EPSR = 9.0
 let imp0 = 377.0
 
 
@@ -34,8 +34,8 @@ let imp0 = 377.0
              ceze[mm] = 1.0
              cezh[mm] = imp0
          } else {
-             ceze[mm] = (1.0 - LOSS) / (1.0 + LOSS)
-             cezh[mm] = imp0 / EPSR / (1.0 + LOSS)
+             ceze[mm] = (1.0 - LOSS) / (1.0 + LOSS)      // chapter 6 line: ceze[mm] = 1.0
+             cezh[mm] = imp0 / EPSR / (1.0 + LOSS)       // chapter 6 line: cezh[mm] = imp0 / EPSR
          }
      }
     for mm in 0 ..< SizeX - 1 {
@@ -66,8 +66,8 @@ let imp0 = 377.0
              ceze[mm] = 1.0
              cezh[mm] = imp0
          } else {
-             ceze[mm] = 1.0
-             cezh[mm] = imp0 / EPSR
+            ceze[mm] = (1.0 - LOSS) / (1.0 + LOSS)      // chapter  6 line: ceze[mm] = 1.0
+            cezh[mm] = imp0 / EPSR / (1.0 + LOSS)       // chapter 6 line: cezh[mm] = imp0 / EPSR
          }
      }
      for mm in 0 ..< SizeX - 1 {

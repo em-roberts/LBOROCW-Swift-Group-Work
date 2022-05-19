@@ -10,7 +10,7 @@ import Foundation
 var currentElectromagneticField = Grid()
 
 gridInit3(maxTime: 450, courantNumber: 1.0, SizeX: 200)
-abcInit(currentElectromagneticField)
+// abcInit(currentElectromagneticField)
 tfsfInit(currentElectromagneticField)
 snapshotInit(currentElectromagneticField)
 
@@ -18,7 +18,7 @@ for t in 0 ..< maxTime {
     time = t
     updateH(currentElectromagneticField)
     tfsfUpdate(currentElectromagneticField)
-    abc(currentElectromagneticField)
+    // abc(currentElectromagneticField)
     updateE(currentElectromagneticField)
     snapshotAppend(currentElectromagneticField)
 }

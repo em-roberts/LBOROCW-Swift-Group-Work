@@ -14,7 +14,7 @@ private var outputText: String = ""
 
 public func snapshotInit (_ g: Grid) -> Void {
     let pathToFile = NSHomeDirectory()
-    writeFileName = pathToFile + "/AmazingEpic " + date.description + ".txt"
+    writeFileName = pathToFile + "/AmazingEpic " + date.description + ".dat"
     
     let fileHasBeenWritten = FileManager.default.createFile(atPath: writeFileName, contents: nil, attributes: nil)
     return
