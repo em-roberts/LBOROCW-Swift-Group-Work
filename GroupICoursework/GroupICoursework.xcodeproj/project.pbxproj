@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		522727292834262800F440E0 /* 1D FDTD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522727282834262800F440E0 /* 1D FDTD.swift */; };
 		5227272D2834325700F440E0 /* Harmonic 1 .swift in Sources */ = {isa = PBXBuildFile; fileRef = 5227272C2834325700F440E0 /* Harmonic 1 .swift */; };
+		5244C37C2836E06200CCBCC3 /* gridInit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5244C37B2836E06200CCBCC3 /* gridInit.swift */; };
 		EFF748B027EB627200C1C011 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFF748AF27EB627200C1C011 /* main.swift */; };
 /* End PBXBuildFile section */
 
@@ -27,6 +28,7 @@
 /* Begin PBXFileReference section */
 		522727282834262800F440E0 /* 1D FDTD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "1D FDTD.swift"; sourceTree = "<group>"; };
 		5227272C2834325700F440E0 /* Harmonic 1 .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Harmonic 1 .swift"; sourceTree = "<group>"; };
+		5244C37B2836E06200CCBCC3 /* gridInit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gridInit.swift; sourceTree = "<group>"; };
 		EFF748AC27EB627200C1C011 /* GroupICoursework */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = GroupICoursework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFF748AF27EB627200C1C011 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -64,6 +66,7 @@
 				EFF748AF27EB627200C1C011 /* main.swift */,
 				522727282834262800F440E0 /* 1D FDTD.swift */,
 				5227272C2834325700F440E0 /* Harmonic 1 .swift */,
+				5244C37B2836E06200CCBCC3 /* gridInit.swift */,
 			);
 			path = GroupICoursework;
 			sourceTree = "<group>";
@@ -128,6 +131,7 @@
 				5227272D2834325700F440E0 /* Harmonic 1 .swift in Sources */,
 				EFF748B027EB627200C1C011 /* main.swift in Sources */,
 				522727292834262800F440E0 /* 1D FDTD.swift in Sources */,
+				5244C37C2836E06200CCBCC3 /* gridInit.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

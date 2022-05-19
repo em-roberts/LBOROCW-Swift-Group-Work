@@ -124,3 +124,5 @@ if fileHasBeenWritten {
 //definitely done program 4.6
 // for now commented out amplitude and phase code - asking Mark if we have done Gnuplot wrong
 // for now ignoring harmonic 2
+//working from program 4.11
+
