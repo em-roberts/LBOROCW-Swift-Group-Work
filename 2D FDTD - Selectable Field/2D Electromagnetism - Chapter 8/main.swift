@@ -25,7 +25,6 @@ snapshotInit()
 
 for t in 0 ..< stepEnd {
     g.time = timeStep(time: t)
-    print(g.time)
     updateH2d(g)
     tfsfUpdate(g)
     updateE2d(g)
