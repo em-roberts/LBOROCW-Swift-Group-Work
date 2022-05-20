@@ -2,7 +2,7 @@ let maxTime: Int = 450
 let LOSS: Double = 0.02 
 let LOSS_LAYER: Int = 180
 
-class Field {
+class Grid {
     let size: Int
     var electric: [Double]
     var magnetic: [Double]
@@ -12,11 +12,15 @@ class Field {
     var chyh: [Double]
     var chye: [Double]
 
+    var courantNumber: Double
+
     // var relativePermittivity: [Double]
     let impedence: Double = 377.0
 
-    init(size: Int) {
+    init(size: Int, courant: Double) {
         self.size = size
+        self.courantNumber = courant
+
         electric = [Double](repeating: 0.0, count: size)
         magnetic = [Double](repeating: 0.0, count: size - 1)
 
@@ -40,11 +44,11 @@ class Field {
 
         for index in 0 ..< magnetic.count {
             if (index < LOSS_LAYER) {
-                chyh[index] = 1.0;
+                chyh[index] = 1.0
                 chye[index] = 1.0 / impedence
             } else {
-                chyh[index] = (1.0 - LOSS) / (1.0 + LOSS);
-                chye[index] = 1.0 / impedence / (1.0 + LOSS);
+                chyh[index] = (1.0 - LOSS) / (1.0 + LOSS)
+                chye[index] = 1.0 / impedence / (1.0 + LOSS)
             }
         }
 
@@ -60,34 +64,42 @@ class Field {
         // ABC
         // magnetic[magnetic.count] = magnetic[magnetic.count - 1]
 
-        for index in 0 ..< magnetic.count {
-            magnetic[index] = chyh[index] * magnetic[index] + chye[index] * (electric[index + 1] - electric[index])
-        }
+        update_magnetic()
 
         // Magnetic correction
-        magnetic[49] -= exp(-(timeStep - 30.) * (timeStep - 30.) / 100.) / impedence
+        // magnetic[49] -= exp(-(timeStep - 30.) * (timeStep - 30.) / 100.) / impedence
+
+        update_electric()
 
         // ABC
-        electric[0] = electric[1]
+        // electric[0] = electric[1]
 
+        electric[0] = ezInc(time: timeStep, location: 0.0)
+
+    }
+
+    func update_electric() -> Void {
         for index in 1 ..< magnetic.count {
             electric[index] = ceze[index] * electric[index] + cezh[index] * (magnetic[index] - magnetic[index - 1]) // * impedence / relativePermittivity[index]
         }
-
-        // Electric correction
-        electric[50] += exp(-(timeStep + 0.5 - (-0.5) - 30.) * (timeStep + 0.5 - (-0.5) - 30.) / 100.)
-
     }
+
+    func update_magnetic() -> Void {
+        for index in 0 ..< magnetic.count {
+            magnetic[index] = chyh[index] * magnetic[index] + chye[index] * (electric[index + 1] - electric[index])
+        }
+    }
+
 }
 
-var field: Field = Field(200)
+var grid: Grid = Grid(size: 200)
 
 // Main
 snapshotInit()
 for i in 0 ..< maxTime {
-    field.step(timeStep: i)
+    grid.step(timeStep: i)
     if (i % 10 == 0) { // modulo operator
-        snapshotWrite(field, timeStep: i)
+        snapshotWrite(grid, timeStep: i)
     }
 }
 snapshotUpload()

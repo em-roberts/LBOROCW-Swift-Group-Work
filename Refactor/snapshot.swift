@@ -16,17 +16,17 @@ public func snapshotInit () -> Void {
     return
 }
 
-public func snapshotWrite (_ field: Field, timeStep: Int) -> Void {
+public func snapshotWrite (_ grid: Grid, timeStep: Int) -> Void {
     if writeFileName == "" {
         print("snapshotAppend: snapshotInit must be called before snapshotWrite")
         exit(-1)
     }
-    for i in 0 ..< field.electric.count {
+    for i in 0 ..< grid.electric.count {
         outputText.append(timeStep.description)
         outputText.append("\t")
         outputText.append(i.description)
         outputText.append("\t")
-        outputText.append(field.electric[i].description)
+        outputText.append(grid.electric[i].description)
     }
     outputText.append("\n")
     return
