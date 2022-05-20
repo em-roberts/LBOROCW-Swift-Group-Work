@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+/*
 public func AllocationIn1D(maxTime: Int, courantNumber: Double, timeStep: Int) {
     currentElectromagneticField.electricField = [Double] (repeating: 0.0, count: currentElectromagneticField.size)
     
@@ -16,14 +16,16 @@ public func AllocationIn1D(maxTime: Int, courantNumber: Double, timeStep: Int) {
     currentElectromagneticField.maxTime = maxTime
     currentElectromagneticField.courantNumber = courantNumber
 }
+*/
 
 public struct Grid {
     var electricField: [Double] = []
     var magneticField: [Double] = []
     var timeStep = 0
     var maxTime = 0
-    var courantNumber = 0.0
+    var courant = 0.0
     var size = 0
     
 }
 
+//fdtd2
