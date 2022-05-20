@@ -20,20 +20,31 @@ class Field {
         electric = [Double](repeating: 0.0, count: size)
         magnetic = [Double](repeating: 0.0, count: size - 1)
 
-        ceze = [Double](repeating: 1.0, count: size)
-        cezh = [Double](repeating: impedence, count: size)
-        chye = [Double](repeating: 0.0, count: size - 1)
-        chyh = [Double](repeating: 0.0, count: size - 1)
-        
-        for index in 0 ..< size {
+        ceze = [Double](repeating: 1.0, count: electric.count)
+        cezh = [Double](repeating: impedence, count: electric.count)
+        chye = [Double](repeating: 1.0, count: magnetic.count)
+        chyh = [Double](repeating: 1.0 / impedence, count: magnetic.count)
+
+        for index in 0 ..< electric.count {
             if index < 100 {
-                ceze[mm] = (1.0 - LOSS) / (1.0 + LOSS)
-                cezh[mm] = impedence / 9.0 / (1.0 + LOSS)
-            } else if index < LOSS_LOSS_LAYER {
-                
+                ceze[index] = 1.0
+                cezh[index] = impedence
+            } else if index < LOSS_LAYER {
+                ceze[index] = 1.0
+                cezh[index] = impedence / 9.0
             } else {
-                ceze[mm] = (1.0 - LOSS) / (1.0 + LOSS)
-                cezh[mm] = impedence / 9.0 / (1.0 + LOSS)
+                ceze[index] = (1.0 - LOSS) / (1.0 + LOSS)
+                cezh[index] = impedence / 9.0 / (1.0 + LOSS)
+            }
+        }
+
+        for index in 0 ..< magnetic.count {
+            if (index < LOSS_LAYER) {
+                chyh[index] = 1.0;
+                chye[index] = 1.0 / impedence
+            } else {
+                chyh[index] = (1.0 - LOSS) / (1.0 + LOSS);
+                chye[index] = 1.0 / impedence / (1.0 + LOSS);
             }
         }
 
@@ -47,10 +58,10 @@ class Field {
     func step(timeStep: Int) -> Void {
 
         // ABC
-        magnetic[size - 1] = magnetic[size - 2]
+        // magnetic[magnetic.count] = magnetic[magnetic.count - 1]
 
-        for index in 0 ..< size - 1 {
-            magnetic[index] = magnetic[index] + (electric[index + 1] - electric[index]) / impedence
+        for index in 0 ..< magnetic.count {
+            magnetic[index] = chyh[index] * magnetic[index] + chye[index] * (electric[index + 1] - electric[index])
         }
 
         // Magnetic correction
@@ -59,7 +70,7 @@ class Field {
         // ABC
         electric[0] = electric[1]
 
-        for index in 1 ..< size - 1 {
+        for index in 1 ..< magnetic.count {
             electric[index] = ceze[index] * electric[index] + cezh[index] * (magnetic[index] - magnetic[index - 1]) // * impedence / relativePermittivity[index]
         }
 
