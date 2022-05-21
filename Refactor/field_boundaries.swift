@@ -1,4 +1,6 @@
-private var tfsfBoundary: Int 
+import Foundation
+
+private var tfsfBoundary: Int = 0
 
 func tfsfInit(_ grid: Grid) -> Void {
     print("Enter the Location of the TFSF Boundary:")
@@ -7,8 +9,8 @@ func tfsfInit(_ grid: Grid) -> Void {
 }
 
 func tfsfUpdate(timeStep: Int, _ grid: Grid) -> Void {
-    grid.magnetic[tfsfBoundary] -= ezInc(time: timeStep, location: 0.0, grid: grid) * grid.chye[tfsfBoundary]
-    grid.magnetic[tfsfBoundary + 1] += ezInc(time: timeStep + 0.5, location: -0.5, grid: grid)
+    grid.magnetic[tfsfBoundary] -= ezInc(time: Double(timeStep), location: 0.0, grid: grid) * grid.chye[tfsfBoundary]
+    grid.electric[tfsfBoundary + 1] += ezInc(time: Double(timeStep) + 0.5, location: -0.5, grid: grid)
 }
 
 private var initDone: Bool = false
@@ -31,7 +33,7 @@ func abcInit(_ grid: Grid) -> Void {
     // abcCoeffRight = (temp - 1.0) / (temp + 1.0)
     
     //coeffs on left
-    var temp1: Double = sqrt(grid.cezh[0] * grid.Chye[0])
+    var temp1: Double = sqrt(grid.cezh[0] * grid.chye[0])
     var temp2: Double = 1.0 / temp1 + 2.0 + temp1
     abcCoeffLeft = [
         -(1.0 / temp1 - 2.0 + temp1) / temp2,
@@ -57,7 +59,8 @@ func abc(_ grid: Grid) -> Void {
         exit(-1)
     }
 
-    grid.electric[0] = abcCoeffLeft[0] * (grid.electric[2] + elecFieldOldLeft2[0])
+    grid.electric[0] = 
+        abcCoeffLeft[0] * (grid.electric[2] + elecFieldOldLeft2[0])
         + abcCoeffLeft[1] * (elecFieldOldLeft1[0] + elecFieldOldLeft1[2] -
         grid.electric[1] - elecFieldOldLeft2[1])
         + abcCoeffLeft[2] * elecFieldOldLeft1[1] - elecFieldOldLeft2[2]
@@ -78,5 +81,3 @@ func abc(_ grid: Grid) -> Void {
     }
 
 }
-
-
