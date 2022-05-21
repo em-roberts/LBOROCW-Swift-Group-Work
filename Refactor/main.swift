@@ -33,7 +33,7 @@ class Grid {
             if index < 100 {
                 ceze[index] = 1.0 
                 cezh[index] = impedence
-            } else index < LOSS_LAYER { //was else if
+            } else index < LOSS_LAYER { //was else if 
                  ceze[index] = 1.0 
                  cezh[index] = impedence / relativePermittivity
             //} else {
@@ -59,8 +59,8 @@ class Grid {
     func step(timeStep: Int) -> Void {
         update_magnetic()
         tfsfUpdate(timeStep: timeStep, self)
-        abc(self)
         update_electric()
+        abc(self)
     }
 
     func update_electric() -> Void {
@@ -77,6 +77,7 @@ class Grid {
 
 }
 
+//help with prog 6.2 pls pg 151 
 var grid: Grid = Grid(size: 200, courant: 1.0)
 
 // Main
