@@ -10,17 +10,12 @@ import Foundation
 public func gridInit() -> Void {
 
     let imp0: Double = 377.0
-    var fieldType: Int = 0
     
     print(" What field is the particle induced in?\n",
-          "Type: '1' - for a magnetic field\n",
-          "      '2' - for an electric field")
-    fieldType = Int(readLine() ?? "0") ?? 0
-    if fieldType == 1 {
-        g.type = GridType.tmZGrid.rawValue
-    } else if fieldType == 2 {
-        g.type = GridType.teZGrid.rawValue
-    } else {
+          "Type: '1' - for a electric field\n",
+          "      '2' - for an magnetic field")
+    g.type = Int(readLine() ?? "0") ?? 0
+    if Type() != 1, Type() != 2 {
         print("\ngridInit: Either '1' or '2' must be inputted when selecting a field")
         exit(-1)
     }

@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		CD040B682832C83C00DA4B54 /* abc c.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD040B672832C83C00DA4B54 /* abc c.swift */; };
-		CD28A6C02835431400A2828D /* timestepping c.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD28A6BF2835431400A2828D /* timestepping c.swift */; };
 		CD6ABAB02829C18600E2B759 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6ABAAF2829C18600E2B759 /* main.swift */; };
 		CD6ABAB82829C1EF00E2B759 /* fdtd-grid h.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6ABAB72829C1EF00E2B759 /* fdtd-grid h.swift */; };
 		CD6ABABE2829C26100E2B759 /* gridinit c.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6ABABD2829C26100E2B759 /* gridinit c.swift */; };
@@ -38,7 +37,6 @@
 
 /* Begin PBXFileReference section */
 		CD040B672832C83C00DA4B54 /* abc c.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "abc c.swift"; sourceTree = "<group>"; };
-		CD28A6BF2835431400A2828D /* timestepping c.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "timestepping c.swift"; sourceTree = "<group>"; };
 		CD6ABAAC2829C18600E2B759 /* 2D Electromagnetism - Chapter 8 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "2D Electromagnetism - Chapter 8"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD6ABAAF2829C18600E2B759 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		CD6ABAB72829C1EF00E2B759 /* fdtd-grid h.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "fdtd-grid h.swift"; sourceTree = "<group>"; };
@@ -94,7 +92,6 @@
 				CD6ABABD2829C26100E2B759 /* gridinit c.swift */,
 				CD6ABAC42829C2B900E2B759 /* ricker c.swift */,
 				CD6ABAC72829C86400E2B759 /* snapshot c.swift */,
-				CD28A6BF2835431400A2828D /* timestepping c.swift */,
 				CD6ABACA2829D76500E2B759 /* tfsf c.swift */,
 				CD6ABAC12829C29D00E2B759 /* update c.swift */,
 			);
@@ -181,7 +178,6 @@
 				CDF1DD35282BF8CC003CA117 /* fdtd-alloc h.swift in Sources */,
 				CDA8DE7528339E5600E34B72 /* fdtd-macro-tmz h.swift in Sources */,
 				CD6ABAC52829C2B900E2B759 /* ricker c.swift in Sources */,
-				CD28A6C02835431400A2828D /* timestepping c.swift in Sources */,
 				CD70BD2B28343D56002D91A1 /* fdtd-macro-nonspecific h.swift in Sources */,
 				CD040B682832C83C00DA4B54 /* abc c.swift in Sources */,
 				CDF1DD4E282C08A4003CA117 /* grid1d c.swift in Sources */,

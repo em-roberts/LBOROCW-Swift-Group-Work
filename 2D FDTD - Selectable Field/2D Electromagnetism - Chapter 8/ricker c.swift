@@ -29,7 +29,7 @@ public func ezInc(_ time: Int, location: Double) -> Double {
     }
     
     arg = π * ((cdtds * Double(time) - location) / Double(ppw) - 1.0)
-    arg *= arg
+    arg = arg * arg
     
     return (1.0 - 2.0 * arg) * exp(-arg)
 }

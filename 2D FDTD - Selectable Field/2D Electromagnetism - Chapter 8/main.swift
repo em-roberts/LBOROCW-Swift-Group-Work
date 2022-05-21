@@ -20,16 +20,18 @@ var g = Grid(hx: [], chxh: [], chxe: [],
 gridInit()
 abcInit(g)
 tfsfInit(g)
-timeStepInit()
-snapshotInit()
 
-for t in 0 ..< stepEnd {
-    g.time = timeStep(time: t)
+print("\n","At what point in time should the data be recorded?")
+let timeRead = Int(readLine() ?? "0") ?? 0
+
+for time in 0 ..< MaxTime() {
     updateH2d(g)
     tfsfUpdate(g)
     updateE2d(g)
     abc(g)
-    snapshotWrite(g)
+    if time == timeRead {
+        Snapshot()
+        exit(-1)
+    }
 }
 
-snapshotUpload()

@@ -23,6 +23,8 @@ public var g1 = Grid(hx: [0.0], chxh: [0.0], chxe: [0.0],
 
 public func tfsfInit(_ a: Grid) -> Void {
     
+    g1 = g
+    
     gridInit1d()
     
     print("\n","Grid is", g.sizeX, "by", g.sizeY, "cell")

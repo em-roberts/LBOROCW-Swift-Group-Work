@@ -7,77 +7,42 @@
 
 import Foundation
 
-private var writeFileName: String = ""
-private var outputText: String = ""
+let date = Date()
+let pathToFile = NSHomeDirectory()
+let writeFilename = pathToFile + "/snapshot" + date.description + ".dat"
+var xEnd: Int = 0, yEnd: Int = 0
 
-public func snapshotInit () -> Void {
-    let date = Date()
-    let filePath = NSHomeDirectory()
-    //Currently uploads to a .txt file
-    writeFileName = filePath + "/snapshot " + date.description + ".dat"
-    
-    if (FileManager.default.createFile(atPath: writeFileName, contents: nil, attributes: nil)) {
-        print("\n","File successfully created")
-    } else {
-        print("An error occured when creating the file")
-    }
-    return
-}
+let fileHasBeenWritten = FileManager.default.createFile(atPath: writeFilename, contents: nil, attributes: nil)
 
-public func snapshotWrite (_ g: Grid) -> Void {
-    
-    if writeFileName == "" {
-        print("snapshotAppend: snapshotInit must be called before snapshotWrite")
-        exit(-1)
-    }
-    
-    if Type() == GridType.tmZGrid.rawValue {
-        for i in 0 ..< SizeX() {
-            for j in 0 ..< SizeY() {
-                outputText.append(g.time.description)
-                outputText.append("\t")
-                outputText.append(i.description)
-                outputText.append("\t")
-                outputText.append(j.description)
-                outputText.append("\t")
-                outputText.append(g.ez[i * SizeY() + j].description)
-                outputText.append("\n")
-            }
-        }
-    } else {
-        for i in 0 ..< SizeX() - 1 {
-            for j in 0 ..< SizeY() - 1 {
-                outputText.append(g.time.description)
-                outputText.append("\t")
-                outputText.append(i.description)
-                outputText.append("\t")
-                outputText.append(j.description)
-                outputText.append("\t")
-                outputText.append(g.hz[i * (SizeY() - 1) + j].description)
-                outputText.append("\n")
-            }
-        }
-    }
-    
-    outputText.append("\n")
-
-    return
-}
-
-public func snapshotUpload() -> Void {
-    
-    if outputText == "" {
-        print("snapshotWrite: snapshotWrite must be called before snapshotUpload")
-        exit(-1)
-    }
-    
+public func Snapshot() -> Void {
     do {
         
-        try outputText.write(toFile: writeFileName, atomically: false, encoding: .utf8)
+        var outputText = String()
         
+        if Type() == GridType.tmZGrid.rawValue {
+            xEnd = SizeX()
+            yEnd = SizeY()
+        } else {
+            xEnd = SizeX() - 1
+            yEnd = SizeY() - 1
+        }
+        for i in 0 ..< xEnd {
+            for j in 0 ..< yEnd {
+                outputText.append(i.description)
+                outputText.append("\t")
+                outputText.append(j.description)
+                outputText.append("\t")
+                if Type() == GridType.tmZGrid.rawValue {
+                    outputText.append(g.ez[i * SizeY() + j].description)
+                } else {
+                    outputText.append(g.ey[i * (SizeY() - 1) + j].description)
+                }
+                outputText.append("\n")
+            }
+        }
+        
+        try outputText.write(toFile: writeFilename, atomically: false, encoding: .utf8)
     } catch {
-        
     }
-    print("\n","Data has been uploaded to file\n")
-    return
+    print("File Created")
 }

@@ -11,21 +11,21 @@ var LOSS = 0.02
 var LOSS_LAYER = 180
 var maxTime = 250
 var size = 200
-var courantNumber = 1.0
+var courant = 1.0
 var x = 0.0
 
 let num_points = 100
 let impedenceOfFreeSpace = 377.0
 
-public var currentElectromagneticField = Grid()
+var currentElectromagneticField = Grid()
 
+/*
 print("Enter the size of the array - must be an integer")
 currentElectromagneticField.size = Int(readLine() ?? "0") ?? 0
 // look at if put 0, double, letter (error handling)
 
 AllocationIn1D(maxTime: 50, courantNumber: 1.0, timeStep: 5)
 
-/*
 print("Enter the amplitude - must be an integer")
 amp = Double(readLine() ?? "0") ?? 0
 

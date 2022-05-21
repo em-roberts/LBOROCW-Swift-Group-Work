@@ -11,7 +11,6 @@ public enum GridType: Int {
     case oneDGrid = 0
     case teZGrid = 1
     case tmZGrid = 2
-    case threeDGrid = 3
 }
 
 public struct Grid {
