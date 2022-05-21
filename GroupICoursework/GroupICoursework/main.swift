@@ -90,3 +90,5 @@ for i in 0 ..< maxTime {
     }
 }
 snapshotUpload()
+
+/* look at making GIF for 1D */
