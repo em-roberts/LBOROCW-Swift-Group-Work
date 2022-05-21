@@ -7,8 +7,8 @@ func tfsfInit(_ grid: Grid) -> Void {
 }
 
 func tfsfUpdate(timeStep: Int, _ grid: Grid) -> Void {
-    grid.magnetic[tfsfBoundary] -= ezInc(time: timeStep, location: 0.0) * grid.chye[tfsfBoundary]
-    grid.magnetic[tfsfBoundary + 1] += ezInc(time: timeStep + 0.5, location: -0.5)
+    grid.magnetic[tfsfBoundary] -= ezInc(time: timeStep, location: 0.0, grid: grid) * grid.chye[tfsfBoundary]
+    grid.magnetic[tfsfBoundary + 1] += ezInc(time: timeStep + 0.5, location: -0.5, grid: grid)
 }
 
 func abcInit() -> Void {}

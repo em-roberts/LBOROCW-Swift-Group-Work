@@ -1,20 +1,20 @@
-let maxTime: Int = 450
-let LOSS: Double = 0.02 
-let LOSS_LAYER: Int = 180
+let maxTime: Int = 450 //duration of sim
+let LOSS: Double = 0.0253146 
+let LOSS_LAYER: Int = 100
+let relativePermittivity: Double = 4.0 // 9.0 now? as of pg 149
 
 class Grid {
     let size: Int
     var electric: [Double]
     var magnetic: [Double]
 
-    var ceze: [Double]
+    var ceze: [Double] 
     var cezh: [Double]
     var chyh: [Double]
     var chye: [Double]
 
     var courantNumber: Double
 
-    // var relativePermittivity: [Double]
     let impedence: Double = 377.0
 
     init(size: Int, courant: Double) {
@@ -31,56 +31,41 @@ class Grid {
 
         for index in 0 ..< electric.count {
             if index < 100 {
-                ceze[index] = 1.0
+                ceze[index] = 1.0 
                 cezh[index] = impedence
-            } else if index < LOSS_LAYER {
-                ceze[index] = 1.0
-                cezh[index] = impedence / 9.0
-            } else {
-                ceze[index] = (1.0 - LOSS) / (1.0 + LOSS)
-                cezh[index] = impedence / 9.0 / (1.0 + LOSS)
+            } else index < LOSS_LAYER { //was else if
+                 ceze[index] = 1.0 
+                 cezh[index] = impedence / relativePermittivity
+            //} else {
+                //ceze[index] = (1.0 - LOSS) / (1.0 + LOSS)
+                //cezh[index] = impedence / relativePermittivity / (1.0 + LOSS)
             }
         }
 
         for index in 0 ..< magnetic.count {
-            if (index < LOSS_LAYER) {
+            // if (index < LOSS_LAYER) {
                 chyh[index] = 1.0
                 chye[index] = 1.0 / impedence
-            } else {
-                chyh[index] = (1.0 - LOSS) / (1.0 + LOSS)
-                chye[index] = 1.0 / impedence / (1.0 + LOSS)
-            }
+            // } else {
+                // chyh[index] = (1.0 - LOSS) / (1.0 + LOSS) 
+                // chye[index] = 1.0 / impedence / (1.0 + LOSS)
+            // }
         }
 
-        // relativePermittivity = [Double](repeating: 1.0, count: size)
-
-        // for i in 100 ..< size { 
-        // 	relativePermittivity[i] = 9.0
-        // } 
+        tfsfInit(self)
+        abcInit() 
     }
 
     func step(timeStep: Int) -> Void {
-
-        // ABC
-        // magnetic[magnetic.count] = magnetic[magnetic.count - 1]
-
         update_magnetic()
-
-        // Magnetic correction
-        // magnetic[49] -= exp(-(timeStep - 30.) * (timeStep - 30.) / 100.) / impedence
-
+        tfsfUpdate(timeStep: timeStep, self)
+        abc(self)
         update_electric()
-
-        // ABC
-        // electric[0] = electric[1]
-
-        electric[0] = ezInc(time: timeStep, location: 0.0)
-
     }
 
     func update_electric() -> Void {
         for index in 1 ..< magnetic.count {
-            electric[index] = ceze[index] * electric[index] + cezh[index] * (magnetic[index] - magnetic[index - 1]) // * impedence / relativePermittivity[index]
+            electric[index] = ceze[index] * electric[index] + cezh[index] * (magnetic[index] - magnetic[index - 1]) 
         }
     }
 
@@ -92,7 +77,7 @@ class Grid {
 
 }
 
-var grid: Grid = Grid(size: 200)
+var grid: Grid = Grid(size: 200, courant: 1.0)
 
 // Main
 snapshotInit()
