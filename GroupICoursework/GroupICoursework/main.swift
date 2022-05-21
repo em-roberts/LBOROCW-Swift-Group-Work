@@ -1,9 +1,9 @@
 import Foundation
 
-let maxTime: Int = 450 //duration of sim
+let maxTime: Int = 450
 let LOSS: Double = 0.0253146 
 let LOSS_LAYER: Int = 100
-let relativePermittivity: Double = 9.0 // 9.0 now? as of pg 149
+let relativePermittivity: Double = 9.0
 
 class Grid {
     let size: Int
@@ -79,7 +79,6 @@ class Grid {
 
 }
 
-//help with prog 6.2 pls pg 151 
 var grid: Grid = Grid(size: 200, courant: 1.0)
 
 // Main

@@ -63,8 +63,8 @@
 		EFF748AE27EB627200C1C011 /* GroupICoursework */ = {
 			isa = PBXGroup;
 			children = (
-				EF0BFE4228393B35002606A5 /* field_boundaries.swift */,
 				EF0BFE4528393B35002606A5 /* main.swift */,
+				EF0BFE4228393B35002606A5 /* field_boundaries.swift */,
 				EF0BFE4328393B35002606A5 /* snapshot.swift */,
 				EF0BFE4428393B35002606A5 /* source_gen.swift */,
 			);

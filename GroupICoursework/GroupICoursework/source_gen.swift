@@ -1,8 +1,8 @@
 import Foundation
 
 /* global variables -- but private to this file */
-private var delay: Double = 0.0, width: Double = 0.0
-private var pointsPerWavelength: Double = 0.0 
+/*private var delay: Double = 0.0, width: Double = 0.0 */
+private var pointsPerWavelength: Double = 0.0
 
 /* prompt user for source-function width and delay. */
 
