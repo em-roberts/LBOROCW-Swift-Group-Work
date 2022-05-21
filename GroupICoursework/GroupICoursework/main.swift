@@ -1,128 +1,93 @@
-//
-//  main.swift
-//
-//  Created by (s) Emily Roberts on 08/02/2022.
-//
-
-// mm is indexCount
 import Foundation
 
-var LOSS = 0.02
-var LOSS_LAYER = 180
-var maxTime = 250
-var size = 200
-var courant = 1.0
-var x = 0.0
+let maxTime: Int = 450 //duration of sim
+let LOSS: Double = 0.0253146 
+let LOSS_LAYER: Int = 100
+let relativePermittivity: Double = 9.0 // 9.0 now? as of pg 149
 
-let num_points = 100
-let impedenceOfFreeSpace = 377.0
+class Grid {
+    let size: Int
+    var electric: [Double]
+    var magnetic: [Double]
 
-var currentElectromagneticField = Grid()
+    var ceze: [Double] 
+    var cezh: [Double]
+    var chyh: [Double]
+    var chye: [Double]
 
-/*
-print("Enter the size of the array - must be an integer")
-currentElectromagneticField.size = Int(readLine() ?? "0") ?? 0
-// look at if put 0, double, letter (error handling)
+    var courantNumber: Double
 
-AllocationIn1D(maxTime: 50, courantNumber: 1.0, timeStep: 5)
+    let impedence: Double = 377.0
 
-print("Enter the amplitude - must be an integer")
-amp = Double(readLine() ?? "0") ?? 0
+    init(size: Int, courant: Double) {
+        self.size = size
+        self.courantNumber = courant
 
-print("Enter the phase (in degrees) - must be an integer")
-phase = Double(readLine() ?? "0") ?? 0
-phase = phase * Double.pi / 180.0
-*/
+        electric = [Double](repeating: 0.0, count: size)
+        magnetic = [Double](repeating: 0.0, count: size - 1)
 
-var electricField = [Double] (repeating: 0.0, count: currentElectromagneticField.size)
-var magneticField = [Double] (repeating: 0.0, count: currentElectromagneticField.size - 1)
-var relativePermittivity = [Double] (repeating: 0.0, count: currentElectromagneticField.size)
+        ceze = [Double](repeating: 1.0, count: electric.count)
+        cezh = [Double](repeating: impedence, count: electric.count)
+        chye = [Double](repeating: 1.0, count: magnetic.count)
+        chyh = [Double](repeating: 1.0 / impedence, count: magnetic.count)
 
-// array names are from the document, where the coefficient (c) appears in the update equations of (ez) or (hy) and multiplied by either the electric (e) or the magnetic (h) field 
-var ceze = [Double] (repeating: 0.0, count: currentElectromagneticField.size)
-var cezh = [Double] (repeating: 0.0, count: currentElectromagneticField.size)
-var chyh = [Double] (repeating: 0.0, count: currentElectromagneticField.size - 1)
-var chye = [Double] (repeating: 0.0, count: currentElectromagneticField.size - 1)
-
-
-for indexCount in 0 ..< currentElectromagneticField.size {
-    if (indexCount < 100) { // free space //
-        ceze[indexCount] = 1.0
-        cezh[indexCount] = impedenceOfFreeSpace
-    }
-    else if (indexCount < LOSS_LAYER) {
-        ceze[indexCount] = 1.0
-        cezh[indexCount] = impedenceOfFreeSpace / 9.0
-    }
-    else { // lossy dielectric //
-        ceze[indexCount] = (1.0 - LOSS) / (1.0 + LOSS)
-        cezh[indexCount] = impedenceOfFreeSpace / 9.0 / (1.0 + LOSS)
-    }
-}
-
-for indexCount in 0 ..< currentElectromagneticField.size - 1 {
-    if (indexCount < LOSS_LAYER) {
-        chyh[indexCount] = 1.0
-        chye[indexCount] = 1.0 / impedenceOfFreeSpace
-    }
-    else {
-        chyh[indexCount] = (1.0 - LOSS) / (1.0 + LOSS)
-        chye[indexCount] = 1.0 / impedenceOfFreeSpace / (1.0 + LOSS)
-    }
-}
-
-let date = Date() // to ID run by execution time and avoid overwriting previous files
-let pathToFile = "/Users/phkjr/OneDrive - Loughborough University/computational_data/"
-let writeFilename = pathToFile + "test_" + date.description + ".dat"
-
-let fileHasBeenWritten = FileManager.default.createFile(atPath: writeFilename, contents: nil, attributes: nil)
-
-if fileHasBeenWritten {
-    // Do not worry about do, try and catch now - we will cover this later (it is about dealing with runtime errors).
-    do {
-        
-        var outputText = String()
-        
-        for timeStep in 0 ..< maxTime {
-            for indexCount in 0 ..< currentElectromagneticField.size - 1 {
-                magneticField[indexCount] = chyh[indexCount] * magneticField[indexCount] + chye[indexCount] * (electricField[indexCount + 1] - electricField[indexCount])
+        for index in 0 ..< electric.count {
+            if index < 100 {
+                ceze[index] = 1.0 
+                cezh[index] = impedence
+            } else { //was else if index < LOSS_LAYER
+                 ceze[index] = 1.0 
+                 cezh[index] = impedence / relativePermittivity
+            //} else {
+                //ceze[index] = (1.0 - LOSS) / (1.0 + LOSS)
+                //cezh[index] = impedence / relativePermittivity / (1.0 + LOSS)
             }
-    
-            magneticField[49] = magneticField[49] - exp(-(Double(timeStep) - 30.0) * (Double(timeStep) - 30.0) / 100.0) / impedenceOfFreeSpace
-    
-            electricField[0] = electricField[1]
-    
-            for indexCount in 1 ..< currentElectromagneticField.size - 1 {
-                electricField[indexCount] = ceze[indexCount] * electricField[indexCount] + cezh[indexCount] * (magneticField[indexCount] - magneticField[indexCount - 1])
-            }
-            
-         /*   for indexCount in 0 ..< num_points {
-                x = 2.0 * Double.pi * Double(indexCount) / Double(num_points - 1)
-                print(harmonic1(x: x))
-            } */
-    
-            electricField[50] = electricField[50] + exp(-(Double(timeStep) + 0.5 - (-0.5) - 30.0) * (Double(timeStep) + 0.5 - (-0.5) - 30.0) / 100.0)
-            
-            for i in 0 ..< electricField.count {
-                outputText.append(timeStep.description)
-                outputText.append("\t")
-                outputText.append(i.description)
-                outputText.append("\t")
-                outputText.append(electricField[i].description)
-                outputText.append("\n")
-            }
-            outputText.append("\n")
-            print(electricField[50])
         }
-        try outputText.write(toFile: writeFilename, atomically: false, encoding: .utf8)
-    } catch {
-        // code for error handling here - which we have not studied yet
+
+        for index in 0 ..< magnetic.count {
+            // if (index < LOSS_LAYER) {
+                chyh[index] = 1.0
+                chye[index] = 1.0 / impedence
+            // } else {
+                // chyh[index] = (1.0 - LOSS) / (1.0 + LOSS) 
+                // chye[index] = 1.0 / impedence / (1.0 + LOSS)
+            // }
+        }
+
+        tfsfInit(self)
+        abcInit(self) 
     }
-    
+
+    func step(timeStep: Int) -> Void {
+        update_magnetic()
+        tfsfUpdate(timeStep: timeStep, self)
+        update_electric()
+        abc(self)
+    }
+
+    func update_electric() -> Void {
+        for index in 1 ..< magnetic.count {
+            electric[index] = ceze[index] * electric[index] + cezh[index] * (magnetic[index] - magnetic[index - 1]) 
+        }
+    }
+
+    func update_magnetic() -> Void {
+        for index in 0 ..< magnetic.count {
+            magnetic[index] = chyh[index] * magnetic[index] + chye[index] * (electric[index + 1] - electric[index])
+        }
+    }
+
 }
 
-//definitely done program 4.6
-// for now commented out amplitude and phase code - asking Mark if we have done Gnuplot wrong
-// for now ignoring harmonic 2
-//working from program 4.11
+//help with prog 6.2 pls pg 151 
+var grid: Grid = Grid(size: 200, courant: 1.0)
 
+// Main
+snapshotInit()
+for i in 0 ..< maxTime {
+    grid.step(timeStep: i)
+    if (i % 10 == 0) { // modulo operator
+        snapshotWrite(grid, timeStep: i)
+    }
+}
+snapshotUpload()
