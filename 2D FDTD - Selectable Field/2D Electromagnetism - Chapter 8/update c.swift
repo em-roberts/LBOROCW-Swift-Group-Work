@@ -1,0 +1,85 @@
+//
+//  updatetmz c.swift
+//  2D Electromagnetism - Chapter 8
+//
+//  Created by (s) Jack Murdoch on 03/05/2022.
+//
+
+import Foundation
+
+public func updateH2d(_ a: Grid) -> Void {
+    if a.type == GridType.oneDGrid.rawValue {
+        if Type() == GridType.tmZGrid.rawValue {
+            for mm in 0 ..< SizeX() - 1 {
+                g1[n].hy[mm] = Chyh1(mm, n) * Hy1(mm, n)
+                    + Chye1(mm, n) * (Ez1(mm + 1, n) - Ez1(mm, n))
+            }
+        } else {
+            for mm in 0 ..< SizeX() - 1 {
+                g1[n].hz[mm] = Chzh1(mm, n) * Hz1(mm, n)
+                    - Chze1(mm, n) * (Ey1(mm + 1, n) - Ey1(mm, n))
+            }
+        }
+    } else if a.type == GridType.tmZGrid.rawValue {
+        for mm in 0 ..< SizeX() {
+            for nn in 0 ..< SizeY() - 1 {
+                g.hx[mm * (SizeY() - 1) + nn] = Chxh(mm, nn) * Hx(mm, nn)
+                    - Chxe(mm, nn) * (Ez(mm, nn + 1) - Ez(mm, nn))
+            }
+        }
+        for mm in 0 ..< SizeX() - 1 {
+            for nn in 0 ..< SizeY(){
+                g.hy[mm * SizeY() + nn] = Chyh(mm, nn) * Hy(mm, nn)
+                    + Chye(mm, nn) * (Ez(mm + 1, nn) - Ez(mm, nn))
+            }
+        }
+    } else {
+        for mm in 0 ..< SizeX() - 1 {
+            for nn in 0 ..< SizeY() - 1 {
+                g.hz[mm * (SizeY() - 1) + nn] = Chzh(mm, nn) * Hz(mm, nn) +
+                    Chze(mm, nn) * ((Ex(mm, nn + 1) - Ex(mm, nn))
+                                        - (Ey(mm + 1, nn) - Ey(mm, nn)))
+            }
+        }
+    }
+    return
+}
+
+public func updateE2d(_ a: Grid) -> Void {
+    if a.type == GridType.oneDGrid.rawValue {
+        if Type() == GridType.tmZGrid.rawValue {
+            for mm in 1 ..< SizeX() - 1 {
+                g1[n].ez[mm] = Ceze1(mm, n) * Ez1(mm, n)
+                    + Cezh1(mm, n) * (Hy1(mm, n) - Hy1(mm - 1, n))
+            }
+        } else {
+            for mm in 1 ..< SizeX() - 1 {
+                g1[n].ey[mm] = Ceye1(mm, n) * Ey1(mm, n)
+                    - Ceyh1(mm, n) * (Hz1(mm, n) - Hz1(mm - 1, n))
+            }
+        }
+    } else if a.type == GridType.tmZGrid.rawValue {
+        for mm in 1 ..< SizeX() - 1 {
+            for nn in 1 ..< SizeY() - 1 {
+                g.ez[mm * SizeY() + nn] = Ceze(mm, nn) * Ez(mm, nn) +
+                    Cezh(mm, nn) * ((Hy(mm, nn) - Hy(mm - 1, nn)) -
+                                        (Hx(mm, nn) - Hx(mm, nn - 1)))
+            }
+        }
+    } else {
+        for mm in 0 ..< SizeX() - 1 {
+            for nn in 1 ..< SizeY() - 1 {
+                g.ex[mm * SizeY() + nn] = Cexe(mm, nn) * Ex(mm, nn) +
+                    Cexh(mm, nn) * (Hz(mm, nn) - Hz(mm, nn - 1))
+            }
+        }
+        for mm in 1 ..< SizeX() - 1 {
+            for nn in 0 ..< SizeY() - 1 {
+                g.ey[mm * (SizeY() - 1) + nn] = Ceye(mm, nn) * Ey(mm, nn) -
+                    Ceyh(mm, nn) * (Hz(mm, nn) - Hz(mm - 1, nn))
+            }
+        }
+    }
+    return
+}
+

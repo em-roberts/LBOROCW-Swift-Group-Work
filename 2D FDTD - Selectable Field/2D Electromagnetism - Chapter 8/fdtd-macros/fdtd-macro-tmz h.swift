@@ -1,0 +1,58 @@
+//
+//  fdtd-macro-tmz h.swift
+//  2D Electromagnetism - Chapter 8
+//
+//  Created by (s) Jack Murdoch on 17/05/2022.
+//
+
+import Foundation
+
+public func Hx (_ m: Int, _ n: Int) -> Double {
+    return g.hx[(m) * (SizeY() - 1) + (n)]
+}
+public func Chxh (_ m: Int, _ n: Int) -> Double {
+    return g.chxh[(m) * (SizeY() - 1) + (n)]
+}
+public func Chxe (_ m: Int, _ n: Int) -> Double {
+    return g.chxe[(m) * (SizeY() - 1) + (n)]
+}
+
+public func Hy (_ m: Int, _ n: Int) -> Double {
+    return g.hy[(m) * SizeY() + (n)]
+}
+public func Chyh (_ m: Int, _ n: Int) -> Double {
+    return g.chyh[(m) * SizeY() + (n)]
+}
+public func Chye (_ m: Int, _ n: Int) -> Double {
+    return g.chye[(m) * SizeY() + (n)]
+}
+public func Ez (_ m: Int, _ n: Int) -> Double {
+    return g.ez[(m) * SizeY() + (n)]
+}
+public func Ceze (_ m: Int, _ n: Int) -> Double {
+    return g.ceze[(m) * SizeY() + (n)]
+}
+public func Cezh (_ m: Int, _ n: Int) -> Double {
+    return g.cezh[(m) * SizeY() + (n)]
+}
+
+
+public func Hy1 (_ m: Int, _ nn: Int) -> Double {
+    return g1[nn].hy[m]
+}
+public func Chyh1 (_ m: Int, _ nn: Int) -> Double {
+    return g1[nn].chyh[m]
+}
+public func Chye1 (_ m: Int, _ nn: Int) -> Double {
+    return g1[nn].chye[m]
+}
+
+public func Ez1 (_ m: Int, _ nn: Int) -> Double {
+    return g1[nn].ez[m]
+}
+public func Ceze1 (_ m: Int, _ nn: Int) -> Double {
+    return g1[nn].ceze[m]
+}
+public func Cezh1 (_ m: Int, _ nn: Int) -> Double {
+    return g1[nn].cezh[m]
+}
