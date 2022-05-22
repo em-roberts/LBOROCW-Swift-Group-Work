@@ -1,8 +1,8 @@
 import Foundation
 
 let maxTime: Int = 450
-let LOSS: Double = 0.0253146 
-let LOSS_LAYER: Int = 100
+let loss: Double = 0.0253146
+let lossLayer: Int = 100
 let relativePermittivity: Double = 9.0
 
 class Grid {
@@ -17,7 +17,7 @@ class Grid {
 
     var courantNumber: Double
 
-    let impedence: Double = 377.0
+    let impedenceOfFreeSpace: Double = 377.0
 
     init(size: Int, courant: Double) {
         self.size = size
@@ -27,42 +27,34 @@ class Grid {
         magnetic = [Double](repeating: 0.0, count: size - 1)
 
         ceze = [Double](repeating: 1.0, count: electric.count)
-        cezh = [Double](repeating: impedence, count: electric.count)
+        cezh = [Double](repeating: impedenceOfFreeSpace, count: electric.count)
         chye = [Double](repeating: 1.0, count: magnetic.count)
-        chyh = [Double](repeating: 1.0 / impedence, count: magnetic.count)
+        chyh = [Double](repeating: 1.0 / impedenceOfFreeSpace, count: magnetic.count)
 
         for index in 0 ..< electric.count {
             if index < 100 {
                 ceze[index] = 1.0 
-                cezh[index] = impedence
-            } else { //was else if index < LOSS_LAYER
+                cezh[index] = impedenceOfFreeSpace
+            } else {
                  ceze[index] = 1.0 
-                 cezh[index] = impedence / relativePermittivity
-            //} else {
-                //ceze[index] = (1.0 - LOSS) / (1.0 + LOSS)
-                //cezh[index] = impedence / relativePermittivity / (1.0 + LOSS)
+                 cezh[index] = impedenceOfFreeSpace / relativePermittivity
             }
         }
 
         for index in 0 ..< magnetic.count {
-            // if (index < LOSS_LAYER) {
                 chyh[index] = 1.0
-                chye[index] = 1.0 / impedence
-            // } else {
-                // chyh[index] = (1.0 - LOSS) / (1.0 + LOSS) 
-                // chye[index] = 1.0 / impedence / (1.0 + LOSS)
-            // }
+                chye[index] = 1.0 / impedenceOfFreeSpace
         }
 
-        tfsfInit(self)
-        abcInit(self) 
+        scatteredFieldBoundaryInit(self)
+        absorbingBoundaryConditionInit(self)
     }
 
     func step(timeStep: Int) -> Void {
         update_magnetic()
-        tfsfUpdate(timeStep: timeStep, self)
+        scatteredFieldBoundaryUpdate(timeStep: timeStep, self)
         update_electric()
-        abc(self)
+        absorbingBoundaryCondition(self)
     }
 
     func update_electric() -> Void {
@@ -90,5 +82,3 @@ for i in 0 ..< maxTime {
     }
 }
 snapshotUpload()
-
-/* look at making GIF for 1D */

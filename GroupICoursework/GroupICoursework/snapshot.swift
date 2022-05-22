@@ -41,7 +41,7 @@ public func snapshotUpload() -> Void {
     do {
         try outputText.write(toFile: writeFileName, atomically: false, encoding: .utf8)
     } catch {}
-    print("\n","Data has been uploaded to file")
-    print(writeFileName)
+    print("\n","Data has been uploaded to file\n",
+        writeFileName)
     return
 }
