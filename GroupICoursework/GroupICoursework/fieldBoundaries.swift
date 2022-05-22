@@ -3,8 +3,7 @@ import Foundation
 private var scatteredFieldBoundary: Int = 0
 
 func scatteredFieldBoundaryInit(_ grid: Grid) -> Void {
-    print("Enter the Location of the Total-Field/ Scattered Field Boundary:")
-    scatteredFieldBoundary = Int(readLine() ?? "0") ?? 0
+    scatteredFieldBoundary = Int(input(message: "Enter the Location of the Total-Field/ Scattered Field Boundary:"))
     ezIncidenceInit(grid)
 }
 

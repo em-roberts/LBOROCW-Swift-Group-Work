@@ -4,9 +4,7 @@ private var pointsPerWavelength: Double = 0.0
 
 
 func ezIncidenceInit(_ grid: Grid) -> Void {
-
-    print("Enter the points per wavelength:")
-    pointsPerWavelength = Double(readLine() ?? "0") ?? 0
+    pointsPerWavelength = input(message: "Enter the points per wavelength:")
 }
 
 /* calculate source function at given time and location */
