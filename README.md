@@ -1,4 +1,4 @@
-# Group I - No "I" In Team
+# Group I - No "I" In Team : Computational Physics I, PHA904, 2022
 
 ## Overview
 
