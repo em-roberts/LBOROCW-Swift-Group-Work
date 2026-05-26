@@ -1,4 +1,6 @@
-# Group I - No "I" In Team : Computational Physics I, PHA904, 2022
+# Group I - No "I" In Team : Group Coursework
+
+###### Computational Physics: Modelling, Simulation and Good Practice - Swift, PHA904, 2022
 
 ## Overview
 
@@ -44,3 +46,6 @@ Here are a range of results from our outputs of different boundary values and di
 ### I198-500
 
 ![I198-500](/img/I198-500.png)
+
+## Grading 
+This resulted in a grade of 65/100 for the group. 
